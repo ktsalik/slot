@@ -1,0 +1,27 @@
+{
+  "name": "slot",
+  "version": "1.0.0",
+  "description": "Web Slot Machine client on HTML5 using [PixiJS](https://www.pixijs.com).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktsalik/slot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ktsalik/slot/issues"
+  },
+  "homepage": "https://github.com/ktsalik/slot#readme",
+  "dependencies": {
+    "pixi.js": "^5.1.2"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1"
+  }
+}
