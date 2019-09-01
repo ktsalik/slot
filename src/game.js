@@ -1,10 +1,11 @@
 var Game = function(width, height) {
   this.width = width;
   this.height = height;
-  this.renderer = new PIXI.Renderer({
+  PIXI.utils.skipHello();
+  this.renderer = new PIXI.autoDetectRenderer({
     width: 800,
     height: 600,
-    transparent: true,
+    transparent: false,
   });
   this.stage = new PIXI.Container();
 
