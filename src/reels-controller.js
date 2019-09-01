@@ -2,10 +2,15 @@ var ReelsController = function(game) {
   this.reels = [];
   this.engine = game.engine;
   this.game = game;
+  this.x = 0;
+  this.y = 0;
 
   var _this = this;
   PIXI.Ticker.shared.add(function() {
     _this.reels.forEach(function(reel) {
+      reel.container.x = (reel.x * game.engine.renderer.view.width) / game.engine.width;
+      reel.container.y = (reel.y * game.engine.renderer.view.height) / game.engine.height;
+
       reel.render();
 
       for (var i = 0; i < reel.symbols.length; i++) {
