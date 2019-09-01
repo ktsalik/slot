@@ -15,6 +15,16 @@ var Slot = function(params, gameWidth, gameHeight) {
   } else {
     document.body.appendChild(this.engine.renderer.view);
   }
+  
+  function onResize() {
+    var ratio = gameWidth / gameHeight;
+    var view = this.engine.renderer.view;
+    var width = view.parentNode.offsetWidth;
+    var height = width / ratio;
+    this.engine.renderer.resize(width, height);
+  }
+  onResize.bind(this)();
+  window.addEventListener('resize', onResize.bind(this));
 };
 
 Slot.prototype.load = function(config, onComplete) {
