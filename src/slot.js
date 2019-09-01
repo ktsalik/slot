@@ -21,6 +21,10 @@ var Slot = function(params, gameWidth, gameHeight) {
     var view = this.engine.renderer.view;
     var width = view.parentNode.offsetWidth;
     var height = width / ratio;
+    if (height > view.parentNode.offsetHeight) {
+      height = view.parentNode.offsetHeight;
+      width = ratio * height;
+    }
     this.engine.renderer.resize(width, height);
 
     this.reels.reels.forEach(function(reel) {
