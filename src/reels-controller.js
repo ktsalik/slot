@@ -17,6 +17,11 @@ var ReelsController = function(game) {
           symbol.texture = PIXI.Texture.EMPTY;
         }
       }
+
+      reel.symbols.forEach(function(symbol) {
+        symbol.scale.x = game.engine.renderer.view.width / game.engine.width;
+        symbol.scale.y = game.engine.renderer.view.height / game.engine.height;
+      });
       
       var m = reel.mask;
       m.x = reel.container.x;
