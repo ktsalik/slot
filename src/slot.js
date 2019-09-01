@@ -1,7 +1,8 @@
-var Slot = function(params) {
+var Slot = function(params, gameWidth, gameHeight) {
   PIXI.utils.skipHello();
   this.VERSION = '0.1';
-  this.engine = new Game();
+  this.engine = new Game(gameWidth, gameHeight);
+  this.reels = new ReelsController(this.engine);
 
   params = params || {};
   if (params.container) {

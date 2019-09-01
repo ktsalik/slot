@@ -1,4 +1,6 @@
-var Game = function() {
+var Game = function(width, height) {
+  this.width = width;
+  this.height = height;
   this.renderer = new PIXI.Renderer({
     width: 800,
     height: 600,

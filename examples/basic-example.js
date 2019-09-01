@@ -1,6 +1,6 @@
 var game = new Slot({
   container: '#game-container',
-});
+}, 1500, 640);
 
 game.load([
   ['symbol-1', 'assets/space adventure/symbol-1.png'],
@@ -14,4 +14,8 @@ game.load([
   ['symbol-9', 'assets/space adventure/symbol-9.png'],
   ['symbol-10', 'assets/space adventure/symbol-10.png'],
 ], function() {
+  var reel = game.reels.add(3);
+  reel.container.x = 100;
+  reel.container.y = 50;
+  reel.values = [1, 2, 3, 4];
 });
