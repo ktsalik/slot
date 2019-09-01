@@ -15,8 +15,8 @@ game.load([
   ['symbol-10', 'assets/space adventure/symbol-10.png'],
 ], function() {
   var reel = game.reels.add(3);
-  reel.x = 50;
-  reel.y = 50;
+  reel.x = 100;
+  reel.y = 100;
   reel.values = [1, 1, 2, 3];
   for (var i = 0; i < 100; i++) {
     reel.spinValues.push(parseInt(Math.random() * 10) + 1);
