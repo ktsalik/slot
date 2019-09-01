@@ -27,8 +27,6 @@ var ReelsController = function(game) {
       m.endFill();
     });
   }, PIXI.UPDATE_PRIORITY.LOW);
-
-
 };
 
 ReelsController.prototype.add = function(positions, symbolCount, symbolWidth, symbolHeight) {

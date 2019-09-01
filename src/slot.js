@@ -22,6 +22,13 @@ var Slot = function(params, gameWidth, gameHeight) {
     var width = view.parentNode.offsetWidth;
     var height = width / ratio;
     this.engine.renderer.resize(width, height);
+
+    this.reels.reels.forEach(function(reel) {
+      reel.symbols.forEach(function(symbol) {
+        symbol.scale.x = width / gameWidth;
+        symbol.scale.y = height / gameHeight;
+      });
+    });
   }
   onResize.bind(this)();
   window.addEventListener('resize', onResize.bind(this));
