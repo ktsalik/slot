@@ -15,8 +15,7 @@ var Game = function(width, height) {
   });
   this.stage.addChild(welcomeText);
 
-  (function render() {
+  PIXI.Ticker.shared.add(function () {
     _this.renderer.render(_this.stage);
-    requestAnimationFrame(render);
-  })();
+  }, PIXI.UPDATE_PRIORITY.NORMAL);
 };

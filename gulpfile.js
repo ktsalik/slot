@@ -4,6 +4,7 @@ const concat = require('gulp-concat');
 function buildJs() {
   return src([
       'node_modules/pixi.js/dist/pixi.min.js',
+      'node_modules/animejs/lib/anime.min.js',
       'src/*.js',
     ], {
       sourcemaps: true

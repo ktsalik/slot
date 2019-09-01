@@ -3,8 +3,10 @@ var ReelsController = function(engine) {
   this.engine = engine;
 
   var _this = this;
-  (function render() {
+  PIXI.Ticker.shared.add(function() {
     _this.reels.forEach(function(reel) {
+      reel.render();
+
       for (var i = 0; i < reel.symbols.length; i++) {
         var symbol = reel.symbols[i];
         symbol.y = (symbol.height * (i - 1)) + ((0 + reel.offset) * engine.renderer.view.height) / engine.height;
@@ -22,11 +24,8 @@ var ReelsController = function(engine) {
       m.beginFill(0x000000);
       m.drawRect(0, 0, reel.symbols[0].width, reel.symbols[0].height * reel.positions);
       m.endFill();
-
-      reel.render();
     });
-    requestAnimationFrame(render);
-  })();
+  }, PIXI.UPDATE_PRIORITY.LOW)
 };
 
 ReelsController.prototype.add = function(positions, symbolCount, symbolWidth, symbolHeight) {

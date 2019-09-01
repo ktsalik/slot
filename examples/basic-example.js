@@ -17,5 +17,8 @@ game.load([
   var reel = game.reels.add(3);
   reel.container.x = 100;
   reel.container.y = 50;
-  reel.values = [1, 2, 3, 4];
+  reel.values = [1, 1, 2, 3];
+  for (var i = 0; i < 100; i++) {
+    reel.spinValues.push(parseInt(Math.random() * 10) + 1);
+  }
 });
