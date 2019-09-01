@@ -21,4 +21,10 @@ game.load([
   for (var i = 0; i < 100; i++) {
     reel.spinValues.push(parseInt(Math.random() * 10) + 1);
   }
+
+  window.addEventListener('keydown', function (e) {
+    if (e.keyCode == 32) {
+      game.play();
+    }
+  });
 });

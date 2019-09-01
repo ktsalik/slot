@@ -4,9 +4,15 @@ var ReelsController = function(game) {
   this.game = game;
   this.x = 0;
   this.y = 0;
+  this.events = {
+    onStart: [],
+    onStop: [],
+  };
+  this.rolling = false;
 
   var _this = this;
   PIXI.Ticker.shared.add(function() {
+    var active = false;
     _this.reels.forEach(function(reel) {
       reel.container.x = (reel.x * game.engine.renderer.view.width) / game.engine.width;
       reel.container.y = (reel.y * game.engine.renderer.view.height) / game.engine.height;
@@ -35,7 +41,22 @@ var ReelsController = function(game) {
       m.beginFill(0x000000);
       m.drawRect(0, 0, reel.symbols[0].width, reel.symbols[0].height * reel.positions);
       m.endFill();
+
+      active = reel.rolling == true || !isNaN(parseInt(reel.stopping));
     });
+
+    var previousState = _this.rolling;
+    if (!_this.rolling && active) {
+      _this.rolling = true;
+      _this.events.onStart.forEach(function(fn) {
+        fn(previousState);
+      }); 
+    } else if (_this.rolling && !active) {
+      _this.rolling = false;
+      _this.events.onStop.forEach(function (fn) {
+        fn(previousState);
+      });
+    }
   }, PIXI.UPDATE_PRIORITY.LOW);
 };
 
@@ -49,4 +70,24 @@ ReelsController.prototype.add = function(positions, symbolCount, symbolWidth, sy
 
 ReelsController.prototype.get = function(index) {
   return this.reels[index];
+};
+
+ReelsController.prototype.start = function() {
+  this.reels.forEach(function(reel) {
+    reel.roll();
+  });
+};
+
+ReelsController.prototype.stop = function() {
+  this.reels.forEach(function(reel) {
+    reel.stop();
+  });
+};
+
+ReelsController.prototype.onStart = function(fn) {
+  this.events.onStart.push(fn);
+};
+
+ReelsController.prototype.onStop = function (fn) {
+  this.events.onStop.push(fn);
 };

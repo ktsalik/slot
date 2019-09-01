@@ -41,3 +41,11 @@ Slot.prototype.load = function(config, onComplete) {
   });
   PIXI.Loader.shared.load(onComplete);
 };
+
+Slot.prototype.play = function() {
+  if (!this.reels.rolling) {
+    this.reels.start();
+  } else {
+    this.reels.stop();
+  }
+};

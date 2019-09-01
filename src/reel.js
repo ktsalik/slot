@@ -51,9 +51,9 @@ Reel.prototype.render = function() {
           _this.offset = o._offset;
         },
         complete: function() {
-          setTimeout(function() {
+          // setTimeout(function() {
             _this.stopping = false;
-          }, 100);
+          // }, 100);
         },
       });
     }
@@ -66,5 +66,7 @@ Reel.prototype.roll = function() {
 };
 
 Reel.prototype.stop = function() {
-  this.stopping = 0;
+  if (this.stopping === false) {
+    this.stopping = 0;
+  }
 };
