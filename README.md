@@ -1,6 +1,14 @@
 # slot
 Web Slot Machine client on HTML5 WebGL using [PixiJS](https://www.pixijs.com).
 
+````html
+<div id="game-container"></div>
+````
+
+````html
+<script src="../dist/slot.js"></script>
+````
+
 ````javascript
 // initialize game
 var game = new Slot({
