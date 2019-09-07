@@ -75,7 +75,7 @@ ReelsController.prototype.get = function(index) {
 ReelsController.prototype.start = function() {
   this.reels.forEach(function(reel, i) {
     reel.roll();
-    setTimeout(function() {
+    reel.stopTimeout = setTimeout(function() {
       reel.stop();
     }, 555 + (i * 100));
   });
@@ -83,6 +83,7 @@ ReelsController.prototype.start = function() {
 
 ReelsController.prototype.stop = function() {
   this.reels.forEach(function(reel) {
+    clearTimeout(reel.stopTimeout);
     reel.stop();
   });
 };
