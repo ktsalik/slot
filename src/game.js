@@ -11,11 +11,6 @@ var Game = function(width, height) {
 
   var _this = this;
 
-  var welcomeText = new PIXI.Text('Hello World from PixiJS v' + PIXI.VERSION + '\nUse Space to play', {
-    fill: '#FFF'
-  });
-  this.stage.addChild(welcomeText);
-
   PIXI.Ticker.shared.add(function () {
     _this.renderer.render(_this.stage);
   }, PIXI.UPDATE_PRIORITY.NORMAL);
