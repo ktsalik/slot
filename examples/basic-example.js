@@ -14,12 +14,25 @@ game.load([
   ['symbol-9', 'assets/space adventure/symbol-9.png'],
   ['symbol-10', 'assets/space adventure/symbol-10.png'],
 ], function() {
-  var reel = game.reels.add(3);
-  reel.x = 100;
-  reel.y = 100;
-  reel.values = [1, 1, 2, 3];
-  for (var i = 0; i < 100; i++) {
-    reel.spinValues.push(parseInt(Math.random() * 10) + 1);
+
+  // 3x3
+  var reelsCount = 3;
+  var reelsPositions = 3;
+  for (var i = 0; i < reelsCount; i++) {
+    // create reel
+    var reel = game.reels.add(reelsPositions);
+
+    // position reel
+    reel.x = i * 140;
+    reel.y = 100;
+
+    // populate reel with values
+    for (var k = 0; k < reelsPositions + 1; k++) {
+      reel.values.push(parseInt(Math.random() * 10) + 1);
+    }
+    for (var k = 0; k < 100; k++) {
+      reel.spinValues.push(parseInt(Math.random() * 10) + 1);
+    }
   }
 
   window.addEventListener('keydown', function (e) {
