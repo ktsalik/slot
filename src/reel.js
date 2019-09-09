@@ -61,12 +61,14 @@ Reel.prototype.render = function() {
 };
 
 Reel.prototype.roll = function() {
-  this.rolling = true;
-  this.currentSpinValues = this.spinValues.slice(0);
+  if (!this.rolling && this.stopping === false) {
+    this.rolling = true;
+    this.currentSpinValues = this.spinValues.slice(0);
+  }
 };
 
 Reel.prototype.stop = function() {
-  if (this.stopping === false) {
+  if (this.rolling && this.stopping === false) {
     this.stopping = 0;
   }
 };
