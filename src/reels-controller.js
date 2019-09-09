@@ -53,7 +53,7 @@ var ReelsController = function(game) {
       }); 
     } else if (_this.rolling && !active) {
       _this.rolling = false;
-      _this.events.onStop.forEach(function (fn) {
+      _this.events.onStop.forEach(function(fn) {
         fn(previousState);
       });
     }

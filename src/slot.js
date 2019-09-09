@@ -2,6 +2,22 @@ var Slot = function(params, gameWidth, gameHeight) {
   this.VERSION = '0.1';
   this.engine = new Game(gameWidth, gameHeight);
   this.reels = new ReelsController(this);
+  this.events = {
+    start: [],
+    stop: [],
+  };
+
+  this.reels.onStart(function () {
+    this.events.start.forEach(function (fn) {
+      fn();
+    });
+  }.bind(this));
+
+  this.reels.onStop(function() {
+    this.events.stop.forEach(function(fn) {
+      fn();
+    });
+  }.bind(this));
 
   params = params || {};
   if (params.container) {
@@ -46,5 +62,11 @@ Slot.prototype.play = function() {
     this.reels.start();
   } else {
     this.reels.stop();
+  }
+};
+
+Slot.prototype.on = function(eventName, fn) {
+  if (eventName in this.events) {
+    this.events[eventName].push(fn);
   }
 };
