@@ -11,9 +11,10 @@ var ReelsController = function(game) {
   this.rolling = false;
 
   var _this = this;
-  PIXI.Ticker.shared.add(function() {
+  var rollingTime = 0;
+  PIXI.Ticker.shared.add(function(delta) {
     var active = false;
-    _this.reels.forEach(function(reel) {
+    _this.reels.forEach(function(reel, reelIndex) {
       reel.container.x = (reel.x * game.engine.renderer.view.width) / game.engine.width;
       reel.container.y = (reel.y * game.engine.renderer.view.height) / game.engine.height;
 
@@ -43,6 +44,13 @@ var ReelsController = function(game) {
       m.endFill();
 
       active = reel.rolling == true || !isNaN(parseInt(reel.stopping));
+
+      if (active) {
+        var reelStopTime = 555 + (reelIndex * 100);
+        if (rollingTime > reelStopTime) {
+          reel.stop(); // FIXME: don't call stop multiple times
+        }
+      }
     });
 
     if (!_this.rolling && active) {
@@ -52,9 +60,14 @@ var ReelsController = function(game) {
       }); 
     } else if (_this.rolling && !active) {
       _this.rolling = false;
+      rollingTime = 0;
       _this.events.onStop.forEach(function(fn) {
         fn();
       });
+    }
+
+    if (active) {
+      rollingTime += delta * 16.667;
     }
   }, PIXI.UPDATE_PRIORITY.LOW);
 };
@@ -74,15 +87,15 @@ ReelsController.prototype.get = function(index) {
 ReelsController.prototype.start = function() {
   this.reels.forEach(function(reel, i) {
     reel.roll();
-    reel.stopTimeout = setTimeout(function() {
-      reel.stop();
-    }, 555 + (i * 100));
+    // reel.stopTimeout = setTimeout(function() {
+    //   reel.stop();
+    // }, 555 + (i * 100));
   });
 };
 
 ReelsController.prototype.stop = function() {
   this.reels.forEach(function(reel) {
-    clearTimeout(reel.stopTimeout);
+    // clearTimeout(reel.stopTimeout);
     reel.stop();
   });
 };
