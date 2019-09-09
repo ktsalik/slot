@@ -35,7 +35,7 @@ game.load([
     }
   }
 
-  game.on('stop', function () {
+  game.on('result', function () {
     // change spin values
     for (var i = 0; i < reelsCount; i++) {
       for (var k = 0; k < 100; k++) {
