@@ -11,7 +11,7 @@ var Game = function(width, height) {
 
   var _this = this;
 
-  PIXI.Ticker.shared.add(function () {
+  PIXI.Ticker.shared.add(function() {
     _this.renderer.render(_this.stage);
   }, PIXI.UPDATE_PRIORITY.NORMAL);
 };

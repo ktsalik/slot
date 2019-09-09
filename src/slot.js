@@ -7,8 +7,8 @@ var Slot = function(params, gameWidth, gameHeight) {
     stop: [],
   };
 
-  this.reels.onStart(function () {
-    this.events.start.forEach(function (fn) {
+  this.reels.onStart(function() {
+    this.events.start.forEach(function(fn) {
       fn();
     });
   }.bind(this));

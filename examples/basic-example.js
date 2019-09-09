@@ -35,7 +35,7 @@ game.load([
     }
   }
 
-  game.on('result', function () {
+  game.on('result', function() {
     // change spin values
     for (var i = 0; i < reelsCount; i++) {
       for (var k = 0; k < 100; k++) {
@@ -44,7 +44,7 @@ game.load([
     }
   });
 
-  window.addEventListener('keydown', function (e) {
+  window.addEventListener('keydown', function(e) {
     if (e.keyCode == 32) {
       game.play();
     }

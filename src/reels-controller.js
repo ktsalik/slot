@@ -92,6 +92,6 @@ ReelsController.prototype.onStart = function(fn) {
   this.events.onStart.push(fn);
 };
 
-ReelsController.prototype.onStop = function (fn) {
+ReelsController.prototype.onStop = function(fn) {
   this.events.onStop.push(fn);
 };
