@@ -45,16 +45,15 @@ var ReelsController = function(game) {
       active = reel.rolling == true || !isNaN(parseInt(reel.stopping));
     });
 
-    var previousState = _this.rolling;
     if (!_this.rolling && active) {
       _this.rolling = true;
       _this.events.onStart.forEach(function(fn) {
-        fn(previousState);
+        fn();
       }); 
     } else if (_this.rolling && !active) {
       _this.rolling = false;
       _this.events.onStop.forEach(function(fn) {
-        fn(previousState);
+        fn();
       });
     }
   }, PIXI.UPDATE_PRIORITY.LOW);
