@@ -13,6 +13,7 @@ game.load([
   ['symbol-8', 'assets/space adventure/symbol-8.png'],
   ['symbol-9', 'assets/space adventure/symbol-9.png'],
   ['symbol-10', 'assets/space adventure/symbol-10.png'],
+  ['btn-spin', 'assets/space adventure/button-spin.png'],
 ], function() {
 
   // 3x3
@@ -43,6 +44,8 @@ game.load([
       }
     }
   });
+
+  var btnPlay = game.sprite('btn-spin');
 
   window.addEventListener('keydown', function(e) {
     if (e.keyCode == 32) {
