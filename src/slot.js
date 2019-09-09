@@ -78,3 +78,9 @@ Slot.prototype.on = function(eventName, fn) {
     this.events[eventName].push(fn);
   }
 };
+
+Slot.prototype.sprite = function(resourceKey) {
+  var sprite = new PIXI.Sprite(PIXI.Loader.shared.resources[resourceKey].texture);
+  this.engine.stage.addChild(sprite);
+  return sprite;
+};
