@@ -35,6 +35,15 @@ game.load([
     }
   }
 
+  game.on('stop', function () {
+    // change spin values
+    for (var i = 0; i < reelsCount; i++) {
+      for (var k = 0; k < 100; k++) {
+        game.reels.get(i).spinValues.push(parseInt(Math.random() * 10) + 1);
+      }
+    }
+  });
+
   window.addEventListener('keydown', function (e) {
     if (e.keyCode == 32) {
       game.play();
