@@ -27,9 +27,10 @@ function init(game) {
   reel.y = 100;
   
   // populate reel with current values and spin values
+  var symbolsCount = 3;
   reel.values = [1, 1, 2, 3];
-  for (var i = 0; i < 100; i++) {
-    reel.spinValues.push(parseInt(Math.random() * 3) + 1);
+  for (var i = 0; i < 14; i++) {
+    reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
   }
   
   // play using Spacebar

@@ -21,6 +21,7 @@ var game = new Slot({
     // 3x3
     var reelsCount = 3;
     var reelsPositions = 3;
+    var symbolsCount = 10;
     for (var i = 0; i < reelsCount; i++) {
       // create reel
       var reel = game.reels.add(reelsPositions);
@@ -31,18 +32,18 @@ var game = new Slot({
 
       // populate reel with values
       for (var k = 0; k < reelsPositions + 1; k++) {
-        reel.values.push(parseInt(Math.random() * 10) + 1);
+        reel.values.push(parseInt(Math.random() * symbolsCount) + 1);
       }
-      for (var k = 0; k < 100; k++) {
-        reel.spinValues.push(parseInt(Math.random() * 10) + 1);
+      for (var k = 0; k < 14; k++) {
+        reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
       }
     }
 
     game.on('result', function() {
       // change spin values
       for (var i = 0; i < reelsCount; i++) {
-        for (var k = 0; k < 100; k++) {
-          game.reels.get(i).spinValues.push(parseInt(Math.random() * 10) + 1);
+        for (var k = 0; k < 14; k++) {
+          game.reels.get(i).spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
         }
       }
     });
