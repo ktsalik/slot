@@ -69,7 +69,7 @@ Slot.ReelsController = function(game) {
     if (active) {
       rollingTime += delta * 16.667;
     }
-  }, PIXI.UPDATE_PRIORITY.LOW);
+  }, PIXI.UPDATE_PRIORITY.HIGH);
 };
 
 Slot.ReelsController.prototype.add = function(positions, symbolCount, symbolWidth, symbolHeight) {
