@@ -11,13 +11,22 @@ Slot.ReelsController = function(game) {
   this.rolling = false;
 
   var _this = this;
+  function resizeAndPosition() {
+    _this.reels.forEach(function(reel, reelIndex) {
+      reel.container.x = (reel.x * game.engine.renderer.view.width) / game.engine.width;
+      reel.container.y = (reel.y * game.engine.renderer.view.height) / game.engine.height;
+      reel.symbols.forEach(function (symbol) {
+        symbol.scale.x = game.engine.renderer.view.width / game.engine.width;
+        symbol.scale.y = game.engine.renderer.view.height / game.engine.height;
+      });
+    });
+  }
+  resizeAndPosition();
   var rollingTime = 0;
   PIXI.Ticker.shared.add(function(delta) {
     var active = false;
     _this.reels.forEach(function(reel, reelIndex) {
-      reel.container.x = (reel.x * game.engine.renderer.view.width) / game.engine.width;
-      reel.container.y = (reel.y * game.engine.renderer.view.height) / game.engine.height;
-
+      resizeAndPosition();
       reel.render();
 
       for (var i = 0; i < reel.symbols.length; i++) {
@@ -29,11 +38,6 @@ Slot.ReelsController = function(game) {
           symbol.texture = PIXI.Texture.EMPTY;
         }
       }
-
-      reel.symbols.forEach(function(symbol) {
-        symbol.scale.x = game.engine.renderer.view.width / game.engine.width;
-        symbol.scale.y = game.engine.renderer.view.height / game.engine.height;
-      });
       
       var m = reel.mask;
       m.x = reel.container.x;
