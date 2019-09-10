@@ -1,18 +1,18 @@
 # slot
 Web Slot Machine client on HTML5 WebGL using [PixiJS](https://www.pixijs.com).
 
-# Docs
-## Class ````Slot````
-### params ````Object````
-* #### container ````String```` - selector of the game container element
-* #### resources ````Array```` - resources to download
-* #### init ````Function```` - Initialize method
-### gameWidth ````Number````
+## Docs
+### Class ````Slot````
+#### params ````Object````
+* ##### container ````String```` - selector of the game container element
+* ##### resources ````Array```` - resources to download
+* ##### init ````Function```` - Initialize method
+#### gameWidth ````Number````
 The width dimension of the game.
-### gameHeight ````Number````
+#### gameHeight ````Number````
 The height dimension of the game.
 
-# Example
+## Example
 Include library
 ````html
 <script src="../dist/slot.js"></script>
