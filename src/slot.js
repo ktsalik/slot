@@ -44,6 +44,24 @@ var Slot = function(params, gameWidth, gameHeight) {
   }
   onResize.bind(this)();
   window.addEventListener('resize', onResize.bind(this));
+
+  var _this = this;
+  
+  if ('resources' in params) {
+    params.resources.forEach(function(resource) {
+      if (resource.length) {
+        PIXI.Loader.shared.add(resource[0], resource[1]);
+      } else {
+        PIXI.Loader.shared.add(resource.key, resource.value);
+      }
+    });
+  }
+
+  if ('init' in params) {
+    PIXI.Loader.shared.load(function() {
+      params.init.bind(_this)(_this);
+    });
+  }
 };
 
 Slot.prototype.load = function(config, onComplete) {
