@@ -2,6 +2,21 @@ Slot.Sprite = function(resourceKey, engine) {
   this.instance = new PIXI.Sprite(PIXI.Loader.shared.resources[resourceKey].texture);
   this.x = 0;
   this.y = 0;
+  
+  Object.defineProperty(this, 'action', {
+    set: function(value) {
+      this.instance.interactive = false;
+      this.instance.off('pointerdown');
+      switch (value) {
+        case Slot.ACTION.PLAY:
+          this.instance.interactive = true;
+          this.instance.on('pointerdown', function() {
+            engine.game.play();
+          });
+          break;
+      };
+    },
+  });
 
   var _this = this;
   function resizeAndPosition() {

@@ -1,6 +1,7 @@
 var Slot = function(params, gameWidth, gameHeight) {
   this.VERSION = '0.1';
   this.engine = new Slot.Game(gameWidth, gameHeight);
+  this.engine.game = this;
   this.reels = new Slot.ReelsController(this);
   this.events = {
     start: [],
@@ -100,4 +101,9 @@ Slot.prototype.on = function(eventName, fn) {
 Slot.prototype.sprite = function(resourceKey) {
   var sprite = new Slot.Sprite(resourceKey, this.engine);
   return sprite;
+};
+
+Slot.ACTION = {
+  NO_ACTION: 0,
+  PLAY: 1,
 };

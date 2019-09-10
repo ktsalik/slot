@@ -48,6 +48,9 @@ var game = new Slot({
     });
 
     var btnPlay = game.sprite('btn-spin');
+    btnPlay.x = 3 * 140;
+    btnPlay.y = 100 + (3 * 140);
+    btnPlay.action = Slot.ACTION.PLAY;
 
     window.addEventListener('keydown', function(e) {
       if (e.keyCode == 32) {
