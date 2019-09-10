@@ -8,8 +8,8 @@ Slot.Sprite = function(resourceKey, engine) {
     var pixiSprite = _this.instance;
     pixiSprite.scale.x = engine.renderer.view.width / engine.width;
     pixiSprite.scale.y = engine.renderer.view.height / engine.height;
-    pixiSprite.x = (_this.x * engine.width) / engine.renderer.view.width;
-    pixiSprite.y = (_this.y * engine.height) / engine.renderer.view.height;
+    pixiSprite.x = (_this.x * engine.renderer.view.width) / engine.width;
+    pixiSprite.y = (_this.y * engine.renderer.view.height) / engine.height;
   }
   resizeAndPosition();
   PIXI.Ticker.shared.add(function() {
