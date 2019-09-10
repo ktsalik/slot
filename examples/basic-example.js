@@ -38,7 +38,7 @@ var game = new Slot({
       }
     }
 
-    game.on('result', function () {
+    game.on('result', function() {
       // change spin values
       for (var i = 0; i < reelsCount; i++) {
         for (var k = 0; k < 100; k++) {
@@ -49,7 +49,7 @@ var game = new Slot({
 
     var btnPlay = game.sprite('btn-spin');
 
-    window.addEventListener('keydown', function (e) {
+    window.addEventListener('keydown', function(e) {
       if (e.keyCode == 32) {
         game.play();
       }

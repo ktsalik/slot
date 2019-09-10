@@ -15,7 +15,7 @@ Slot.ReelsController = function(game) {
     _this.reels.forEach(function(reel, reelIndex) {
       reel.container.x = (reel.x * game.engine.renderer.view.width) / game.engine.width;
       reel.container.y = (reel.y * game.engine.renderer.view.height) / game.engine.height;
-      reel.symbols.forEach(function (symbol) {
+      reel.symbols.forEach(function(symbol) {
         symbol.scale.x = game.engine.renderer.view.width / game.engine.width;
         symbol.scale.y = game.engine.renderer.view.height / game.engine.height;
       });
