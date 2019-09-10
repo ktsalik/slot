@@ -1,4 +1,4 @@
-var ReelsController = function(game) {
+Slot.ReelsController = function(game) {
   this.reels = [];
   this.engine = game.engine;
   this.game = game;
@@ -72,19 +72,19 @@ var ReelsController = function(game) {
   }, PIXI.UPDATE_PRIORITY.LOW);
 };
 
-ReelsController.prototype.add = function(positions, symbolCount, symbolWidth, symbolHeight) {
-  var reel = new Reel(positions, symbolCount, symbolWidth, symbolHeight);
+Slot.ReelsController.prototype.add = function(positions, symbolCount, symbolWidth, symbolHeight) {
+  var reel = new Slot.Reel(positions, symbolCount, symbolWidth, symbolHeight);
   this.engine.stage.addChild(reel.container);
   this.engine.stage.addChild(reel.mask);
   this.reels.push(reel);
   return reel;
 };
 
-ReelsController.prototype.get = function(index) {
+Slot.ReelsController.prototype.get = function(index) {
   return this.reels[index];
 };
 
-ReelsController.prototype.start = function() {
+Slot.ReelsController.prototype.start = function() {
   this.reels.forEach(function(reel, i) {
     reel.roll();
     // reel.stopTimeout = setTimeout(function() {
@@ -93,17 +93,17 @@ ReelsController.prototype.start = function() {
   });
 };
 
-ReelsController.prototype.stop = function() {
+Slot.ReelsController.prototype.stop = function() {
   this.reels.forEach(function(reel) {
     // clearTimeout(reel.stopTimeout);
     reel.stop();
   });
 };
 
-ReelsController.prototype.onStart = function(fn) {
+Slot.ReelsController.prototype.onStart = function(fn) {
   this.events.onStart.push(fn);
 };
 
-ReelsController.prototype.onStop = function(fn) {
+Slot.ReelsController.prototype.onStop = function(fn) {
   this.events.onStop.push(fn);
 };

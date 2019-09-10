@@ -5,7 +5,11 @@ function buildJs() {
   return src([
       'node_modules/pixi.js/dist/pixi.min.js',
       'node_modules/animejs/lib/anime.min.js',
-      'src/*.js',
+      'src/slot.js',
+      'src/game.js',
+      'src/reels-controller.js',
+      'src/reel.js',
+      'src/sprite.js',
     ], {
       sourcemaps: true
     })

@@ -1,4 +1,4 @@
-var Reel = function(positions) {
+Slot.Reel = function(positions) {
   this.positions = positions;
   this.values = [];
   this.spinValues = [];
@@ -19,7 +19,7 @@ var Reel = function(positions) {
   }
 };
 
-Reel.prototype.render = function() {
+Slot.Reel.prototype.render = function() {
   var _this = this;
 
   if (this.rolling) {
@@ -60,14 +60,14 @@ Reel.prototype.render = function() {
   }
 };
 
-Reel.prototype.roll = function() {
+Slot.Reel.prototype.roll = function() {
   if (!this.rolling && this.stopping === false) {
     this.rolling = true;
     this.currentSpinValues = this.spinValues.slice(0);
   }
 };
 
-Reel.prototype.stop = function() {
+Slot.Reel.prototype.stop = function() {
   if (this.rolling && this.stopping === false) {
     this.stopping = 0;
   }

@@ -1,4 +1,4 @@
-var Game = function(width, height) {
+Slot.Game = function(width, height) {
   this.width = width;
   this.height = height;
   PIXI.utils.skipHello();

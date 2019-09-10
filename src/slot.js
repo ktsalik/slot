@@ -1,7 +1,7 @@
 var Slot = function(params, gameWidth, gameHeight) {
   this.VERSION = '0.1';
-  this.engine = new Game(gameWidth, gameHeight);
-  this.reels = new ReelsController(this);
+  this.engine = new Slot.Game(gameWidth, gameHeight);
+  this.reels = new Slot.ReelsController(this);
   this.events = {
     start: [],
     stop: [],
