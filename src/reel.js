@@ -43,17 +43,17 @@ Slot.Reel.prototype.render = function(speed, bounceDuration, reelIndex) {
       this.rolling = false;
       this.stopping++;
       var o = {
-        _offset: _this.symbols[0].height * speed,
+        offset: _this.symbols[0].height * speed,
       };
-      this.offset = o._offset;
+      this.offset = o.offset;
       anime({
         targets: o,
-        _offset: 0,
+        offset: 0,
         round: 1,
         duration: bounceDuration,
         easing: 'easeOutQuint',
         update: function() {
-          _this.offset = o._offset;
+          _this.offset = o.offset;
         },
         complete: function() {
           _this.stopping = false;
