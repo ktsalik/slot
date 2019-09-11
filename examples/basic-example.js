@@ -40,22 +40,19 @@ var game = new Slot({
       for (var k = 0; k < reelsPositions + 1; k++) {
         reel.values.push(parseInt(Math.random() * symbolsCount) + 1);
       }
-      for (var k = 0; k < 20; k++) { // 20 values for speed <= 0.5 and spin-time 250
+      for (var k = 0; k < 100; k++) {
         reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
       }
     }
 
-    game.on('result', function() {
-      // change spin values
+    game.on('start', function() {
+      // set spin values
       for (var i = 0; i < reelsCount; i++) {
-        for (var k = 0; k < 20; k++) { // 20 values for speed <= 0.5 and spin-time 250
+        for (var k = 0; k < 100; k++) {
           game.reels.get(i).spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
         }
       }
-    });
-
-    game.on('play', function() {
-      // set stop values
+      // set stop (result) values
       for (var i = 0; i < reelsCount; i++) {
         game.reels.get(i).stopValues = [1, 1, 2, 3];
       }

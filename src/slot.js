@@ -99,14 +99,6 @@ Slot.prototype.play = function() {
 };
 
 Slot.prototype.on = function(eventName, fn) {
-  switch (eventName) {
-    case 'play':
-      eventName = 'start';
-      break;
-    case 'result':
-      eventName = 'stop';
-      break;
-  }
   if (eventName in this.events) {
     this.events[eventName].push(fn);
   }
