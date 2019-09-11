@@ -17,6 +17,12 @@ var game = new Slot({
     ['symbol-10', resourcesUrl + 'symbol-10.png'],
     ['btn-spin', resourcesUrl + 'button-spin.png'],
   ],
+  settings: {
+    speed: 0.4,
+    spinTime: 300,
+    spinTimeBetweenReels: 200,
+    bounceDuration: 400,
+  },
   init: function(game) {
     // 3x3
     var reelsCount = 3;
@@ -34,7 +40,7 @@ var game = new Slot({
       for (var k = 0; k < reelsPositions + 1; k++) {
         reel.values.push(parseInt(Math.random() * symbolsCount) + 1);
       }
-      for (var k = 0; k < 14; k++) {
+      for (var k = 0; k < 26; k++) { // 26 values for speed <= 0.8
         reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
       }
     }
@@ -42,7 +48,7 @@ var game = new Slot({
     game.on('result', function() {
       // change spin values
       for (var i = 0; i < reelsCount; i++) {
-        for (var k = 0; k < 14; k++) {
+        for (var k = 0; k < 26; k++) { // 26 values for speed <= 0.8
           game.reels.get(i).spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
         }
       }
