@@ -20,23 +20,27 @@ var resources = [
 
 function init(game) {
   // create a reel
-  var reel = game.reels.add(3);
-  
+  var reel = game.reels.add(3); // with 3 positions
+
   // position reel
   reel.x = 100;
   reel.y = 100;
-  
+
   // initial values
   reel.values = [1, 1, 2, 3];
-  
-  // populate reel with random spin values
-  var symbolsCount = 3;
-  for (var i = 0; i < 14; i++) {
-    reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
-  }
-  
+
+  game.on('start', function () {
+    // populate reel with random spin values
+    var symbolsCount = 3;
+    for (var i = 0; i < 14; i++) {
+      reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
+    }
+    // stop (result) values
+    reel.stopValues = [3, 3, 2, 1];
+  });
+
   // play using Spacebar
-  window.addEventListener('keydown', function(e) {
+  window.addEventListener('keydown', function (e) {
     if (e.keyCode == 32) {
       game.play();
     }
