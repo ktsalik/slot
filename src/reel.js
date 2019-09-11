@@ -3,6 +3,7 @@ Slot.Reel = function(positions) {
   this.values = [];
   this.spinValues = [];
   this.currentSpinValues = [];
+  this.stopValues = [];
   this.symbols = [];
   this.container = new PIXI.Container();
   this.mask = new PIXI.Graphics();
@@ -28,6 +29,7 @@ Slot.Reel.prototype.render = function(speed, bounceDuration) {
     if (this.offset >= this.symbols[0].height) {
       this.offset = 0;
       if (!isNaN(parseInt(this.stopping))) {
+        this.values.unshift(this.stopValues.pop());
         this.stopping++;
       } else {
         this.values.unshift(this.currentSpinValues.pop());
