@@ -34,7 +34,11 @@ Slot.ReelsController = function(game) {
         var symbol = reel.symbols[i];
         symbol.y = (symbol.height * (i - 1)) + (0 + reel.offset);
         if (reel.values[i]) {
-          symbol.texture = PIXI.Loader.shared.resources['symbol-' + reel.values[i]].texture;
+          if ('symbol-' + reel.values[i] in PIXI.Loader.shared.resources) {
+            symbol.texture = PIXI.Loader.shared.resources['symbol-' + reel.values[i]].texture;
+          } else {
+            symbol.texture = PIXI.Texture.EMPTY;
+          }
         } else {
           symbol.texture = PIXI.Texture.EMPTY;
         }
