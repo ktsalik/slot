@@ -8,10 +8,10 @@ var Slot = function(params, gameWidth, gameHeight) {
     stop: [],
   };
   this.settings = {
-    speed: 0.33,
-    spinTime: 555,
-    spinTimeBetweenReels: 100,
-    reelBounceDuration: 250,
+    speed: 0.2,
+    spinTime: 450,
+    spinTimeBetweenReels: 120,
+    reelBounceDuration: 300,
   };
 
   this.reels.onStart(function() {
