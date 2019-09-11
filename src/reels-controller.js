@@ -32,7 +32,7 @@ Slot.ReelsController = function(game) {
 
       for (var i = 0; i < reel.symbols.length; i++) {
         var symbol = reel.symbols[i];
-        symbol.y = (symbol.height * (i - 1)) + ((0 + reel.offset) * _this.engine.renderer.view.height) / _this.engine.height;
+        symbol.y = (symbol.height * (i - 1)) + (0 + reel.offset);
         if (reel.values[i]) {
           symbol.texture = PIXI.Loader.shared.resources['symbol-' + reel.values[i]].texture;
         } else {
