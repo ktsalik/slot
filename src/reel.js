@@ -35,7 +35,7 @@ Slot.Reel.prototype.render = function(speed, bounceDuration) {
       this.values.splice(-1, 1);
     }
 
-    if (this.stopping == this.positions) {
+    if (this.stopping == this.positions + 1) {
       this.rolling = false;
       this.stopping++;
       var o = {
