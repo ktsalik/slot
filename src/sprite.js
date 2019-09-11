@@ -3,18 +3,28 @@ Slot.Sprite = function(resourceKey, engine) {
   this.x = 0;
   this.y = 0;
   
-  Object.defineProperty(this, 'action', {
-    set: function(value) {
-      this.instance.interactive = false;
-      this.instance.off('pointerdown');
-      switch (value) {
-        case Slot.ACTION.PLAY:
-          this.instance.interactive = true;
-          this.instance.on('pointerdown', function() {
-            engine.game.play();
-          });
-          break;
-      };
+  Object.defineProperties(this, {
+    action: {
+      set: function(value) {
+        this.instance.interactive = false;
+        this.instance.off('pointerdown');
+        switch (value) {
+          case Slot.ACTION.PLAY:
+            this.instance.interactive = true;
+            this.instance.on('pointerdown', function() {
+              engine.game.play();
+            });
+            break;
+        };
+      },
+    },
+    visible: {
+      set: function(value) {
+        this.instance.visible = value;
+      },
+      get: function() {
+        return this.instance.visible;
+      },
     },
   });
 

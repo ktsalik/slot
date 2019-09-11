@@ -40,7 +40,7 @@ var game = new Slot({
     reelBounceDuration: 400,
     network: true,
   },
-  init: function (game) {
+  init: function(game) {
     // 3x3
     var reelsCount = 3;
     var reelsPositions = 3;
@@ -59,7 +59,7 @@ var game = new Slot({
       }
     }
 
-    game.on('start', function () {
+    game.on('start', function() {
       // set spin values
       for (var i = 0; i < reelsCount; i++) {
         for (var k = 0; k < 100; k++) {
@@ -69,7 +69,7 @@ var game = new Slot({
       network.send();
     });
 
-    network.onresponse = function (response) {
+    network.onresponse = function(response) {
       game.result(response.result);
     };
 
@@ -78,7 +78,7 @@ var game = new Slot({
     btnPlay.y = 100 + (3 * 140);
     btnPlay.action = Slot.ACTION.PLAY;
 
-    window.addEventListener('keydown', function (e) {
+    window.addEventListener('keydown', function(e) {
       if (e.keyCode == 32) {
         game.play();
       }

@@ -29,7 +29,7 @@ function init(game) {
   // initial values
   reel.values = [1, 1, 2, 3];
 
-  game.on('start', function () {
+  game.on('start', function() {
     // populate reel with random spin values
     var symbolsCount = 3;
     for (var i = 0; i < 14; i++) {
@@ -40,7 +40,7 @@ function init(game) {
   });
 
   // play using Spacebar
-  window.addEventListener('keydown', function (e) {
+  window.addEventListener('keydown', function(e) {
     if (e.keyCode == 32) {
       game.play();
     }
