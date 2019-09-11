@@ -71,7 +71,7 @@ Slot.ReelsController = function(game) {
       });
     }
 
-    if (active) {
+    if (active && !game.waitForResult) {
       rollingTime += delta * 16.667;
     }
   }, PIXI.UPDATE_PRIORITY.HIGH);

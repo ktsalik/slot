@@ -22,6 +22,7 @@ var game = new Slot({
     spinTime: 250,
     spinTimeBetweenReels: 200,
     bounceDuration: 400,
+    network: true,
   },
   init: function(game) {
     // 3x3
@@ -49,10 +50,14 @@ var game = new Slot({
           game.reels.get(i).spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
         }
       }
-      // set stop (result) values
-      for (var i = 0; i < reelsCount; i++) {
-        game.reels.get(i).stopValues = [1, 1, 2, 3];
-      }
+      // set result
+      setTimeout(function() {
+        game.result([
+          [1, 2, 3, 4],
+          [1, 2, 3, 4],
+          [1, 2, 3, 4],
+        ]);
+      }, 100);
     });
 
     var btnPlay = game.sprite('btn-spin');

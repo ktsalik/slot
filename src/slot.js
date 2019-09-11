@@ -12,9 +12,14 @@ var Slot = function(params, gameWidth, gameHeight) {
     spinTime: 450,
     spinTimeBetweenReels: 120,
     reelBounceDuration: 300,
+    network: false,
   };
+  this.waitForResult = false;
 
   this.reels.onStart(function() {
+    if (this.settings.network) {
+      this.waitForResult = true;
+    }
     this.events.start.forEach(function(fn) {
       fn();
     });
@@ -91,11 +96,20 @@ Slot.prototype.load = function(config, onComplete) {
 };
 
 Slot.prototype.play = function() {
-  if (!this.reels.rolling) {
-    this.reels.start();
-  } else {
-    this.reels.stop();
+  if (!this.waitForResult) {
+    if (!this.reels.rolling) {
+      this.reels.start();
+    } else {
+      this.reels.stop();
+    }
   }
+};
+
+Slot.prototype.result = function(result) {
+  this.reels.reels.forEach(function(reel, reelIndex) {
+    reel.stopValues = result[reelIndex];
+  });
+  this.waitForResult = false;
 };
 
 Slot.prototype.on = function(eventName, fn) {
