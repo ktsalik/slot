@@ -1,3 +1,19 @@
+var network = {
+  send: function() {
+    var respond = this.onresponse;
+    setTimeout(function() {
+      respond({
+        result: [
+          [1, 2, 3, 4],
+          [1, 2, 3, 4],
+          [1, 2, 3, 4],
+        ],
+      });
+    }, Math.random() * 500); // random response delay
+  },
+  onresponse: null,
+};
+
 var resourcesUrl = 'assets/space adventure/';
 var gameWidth = 1500;
 var gameHeight = 640;
@@ -22,8 +38,9 @@ var game = new Slot({
     spinTime: 250,
     spinTimeBetweenReels: 200,
     reelBounceDuration: 400,
+    network: true,
   },
-  init: function(game) {
+  init: function (game) {
     // 3x3
     var reelsCount = 3;
     var reelsPositions = 3;
@@ -42,25 +59,26 @@ var game = new Slot({
       }
     }
 
-    game.on('start', function() {
+    game.on('start', function () {
       // set spin values
       for (var i = 0; i < reelsCount; i++) {
         for (var k = 0; k < 100; k++) {
           game.reels.get(i).spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
         }
       }
-      // set stop values
-      for (var i = 0; i < reelsCount; i++) {
-        game.reels.get(i).stopValues = [1, 1, 2, 3];
-      }
+      network.send();
     });
+
+    network.onresponse = function (response) {
+      game.result(response.result);
+    };
 
     var btnPlay = game.sprite('btn-spin');
     btnPlay.x = 3 * 140;
     btnPlay.y = 100 + (3 * 140);
     btnPlay.action = Slot.ACTION.PLAY;
 
-    window.addEventListener('keydown', function(e) {
+    window.addEventListener('keydown', function (e) {
       if (e.keyCode == 32) {
         game.play();
       }
