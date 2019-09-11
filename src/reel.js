@@ -2,7 +2,6 @@ Slot.Reel = function(positions) {
   this.positions = positions;
   this.values = [];
   this.spinValues = [];
-  this.currentSpinValues = [];
   this.stopValues = [];
   this.symbols = [];
   this.container = new PIXI.Container();
@@ -35,7 +34,7 @@ Slot.Reel.prototype.render = function(speed, bounceDuration, reelIndex) {
         this.values.unshift(this.stopValues.pop());
         this.stopping++;
       } else {
-        this.values.unshift(this.currentSpinValues.pop());
+        this.values.unshift(this.spinValues.pop());
       }
       this.values.splice(-1, 1);
     }
@@ -67,7 +66,6 @@ Slot.Reel.prototype.render = function(speed, bounceDuration, reelIndex) {
 Slot.Reel.prototype.roll = function() {
   if (!this.rolling && this.stopping === false) {
     this.rolling = true;
-    this.currentSpinValues = this.spinValues.slice(0);
   }
 };
 

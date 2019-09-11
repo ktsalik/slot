@@ -36,12 +36,9 @@ var game = new Slot({
       reel.x = i * 140;
       reel.y = 100;
 
-      // populate reel with values
+      // initial reel values
       for (var k = 0; k < reelsPositions + 1; k++) {
         reel.values.push(parseInt(Math.random() * symbolsCount) + 1);
-      }
-      for (var k = 0; k < 100; k++) {
-        reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
       }
     }
 
