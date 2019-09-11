@@ -56,11 +56,13 @@ var game = new Slot({
 ````
 
 ## More examples
-### Basic Example - 3x3 offline game.
+### Basic Example
+A simple 3x3 offline game.
 * [HTML](https://github.com/ktsalik/slot/blob/master/examples/basic-example.html)
 * [JS](https://github.com/ktsalik/slot/blob/master/examples/basic-example.js) 
 * [Live](http://htmlpreview.github.io/?https://github.com/ktsalik/slot/blob/master/examples/basic-example.html)
-### Network Example - uses hypothetical network.
+### Network Example
+Uses hypothetical network.
 * [HTML](https://github.com/ktsalik/slot/blob/master/examples/network-example.html)
 * [JS](https://github.com/ktsalik/slot/blob/master/examples/network-example.js) 
 * [Live](http://htmlpreview.github.io/?https://github.com/ktsalik/slot/blob/master/examples/network-example.html)
