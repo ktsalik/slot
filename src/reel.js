@@ -9,6 +9,8 @@ Slot.Reel = function(positions) {
   this.offset = 0;
   this.rolling = false;
   this.stopping = false;
+  this.speed = 0.33;
+  this.bounceDuration = 250;
 
   this.container.mask = this.mask;
 
@@ -23,7 +25,7 @@ Slot.Reel.prototype.render = function() {
   var _this = this;
 
   if (this.rolling) {
-    this.offset += this.symbols[0].height * 0.33;
+    this.offset += this.symbols[0].height * this.speed;
 
     if (this.offset > this.symbols[0].height) {
       this.offset = 0;
@@ -38,22 +40,20 @@ Slot.Reel.prototype.render = function() {
       this.rolling = false;
       this.stopping++;
       var o = {
-        _offset: _this.symbols[0].height * 0.33,
+        _offset: _this.symbols[0].height * this.speed,
       };
       this.offset = o._offset;
       anime({
         targets: o,
         _offset: 0,
         round: 1,
-        duration: 250,
+        duration: this.bounceDuration,
         easing: 'easeOutQuint',
         update: function() {
           _this.offset = o._offset;
         },
         complete: function() {
-          // setTimeout(function() {
-            _this.stopping = false;
-          // }, 100);
+          _this.stopping = false;
         },
       });
     }

@@ -7,6 +7,12 @@ var Slot = function(params, gameWidth, gameHeight) {
     start: [],
     stop: [],
   };
+  this.settings = {
+    speed: 0.33,
+    spinTime: 555,
+    spinTimeBetweenReels: 100,
+    reelBounceDuration: 250,
+  };
 
   this.reels.onStart(function() {
     this.events.start.forEach(function(fn) {
@@ -62,6 +68,14 @@ var Slot = function(params, gameWidth, gameHeight) {
     PIXI.Loader.shared.load(function() {
       params.init.bind(_this)(_this);
     });
+  }
+
+  if ('settings' in params) {
+    for (var key in params.settings) {
+      this.settings[key] = params.settings[key];
+    }
+    this.reels.spinTime = this.settings.spinTime;
+    this.reels.spinTimeBetweenReels = this.settings.spinTimeBetweenReels;
   }
 };
 
