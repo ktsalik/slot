@@ -28,7 +28,7 @@ Slot.ReelsController = function(game) {
     _this.reels.forEach(function(reel, reelIndex) {
       resizeAndPosition();
       
-      reel.render(game.settings.speed, game.settings.bounceDuration, reelIndex);
+      reel.render(game.settings.speed, game.settings.reelBounceDuration, reelIndex);
 
       for (var i = 0; i < reel.symbols.length; i++) {
         var symbol = reel.symbols[i];

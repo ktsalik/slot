@@ -21,7 +21,7 @@ var game = new Slot({
     speed: 0.27,
     spinTime: 250,
     spinTimeBetweenReels: 200,
-    bounceDuration: 400,
+    reelBounceDuration: 400,
     network: true,
   },
   init: function(game) {
