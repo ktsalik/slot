@@ -28,7 +28,7 @@ Slot.ReelsController = function(game) {
     _this.reels.forEach(function(reel, reelIndex) {
       resizeAndPosition();
       
-      reel.render(game.settings.speed, game.settings.bounceDuration);
+      reel.render(game.settings.speed, game.settings.bounceDuration, reelIndex);
 
       for (var i = 0; i < reel.symbols.length; i++) {
         var symbol = reel.symbols[i];
@@ -90,7 +90,7 @@ Slot.ReelsController.prototype.get = function(index) {
 };
 
 Slot.ReelsController.prototype.start = function() {
-  this.reels.forEach(function(reel, i) {
+  this.reels.forEach(function(reel) {
     reel.roll();
   });
 };

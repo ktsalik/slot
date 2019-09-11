@@ -20,7 +20,7 @@ Slot.Reel = function(positions) {
   }
 };
 
-Slot.Reel.prototype.render = function(speed, bounceDuration) {
+Slot.Reel.prototype.render = function(speed, bounceDuration, reelIndex) {
   var _this = this;
 
   if (this.rolling) {
@@ -29,6 +29,9 @@ Slot.Reel.prototype.render = function(speed, bounceDuration) {
     if (this.offset >= this.symbols[0].height) {
       this.offset = 0;
       if (!isNaN(parseInt(this.stopping))) {
+        if (!this.stopValues.length) {
+          console.error('No stop values have been set for reel: ' + reelIndex);
+        }
         this.values.unshift(this.stopValues.pop());
         this.stopping++;
       } else {
