@@ -26,9 +26,11 @@ function init(game) {
   reel.x = 100;
   reel.y = 100;
   
-  // populate reel with current values and spin values
-  var symbolsCount = 3;
+  // initial values
   reel.values = [1, 1, 2, 3];
+  
+  // populate reel with random spin values
+  var symbolsCount = 3;
   for (var i = 0; i < 14; i++) {
     reel.spinValues.push(parseInt(Math.random() * symbolsCount) + 1);
   }
