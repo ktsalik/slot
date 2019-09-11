@@ -9,8 +9,6 @@ Slot.ReelsController = function(game) {
     onStop: [],
   };
   this.rolling = false;
-  this.spinTime = 555;
-  this.spinTimeBetweenReels = 100;
 
   var _this = this;
   function resizeAndPosition() {
@@ -29,7 +27,8 @@ Slot.ReelsController = function(game) {
     var active = false;
     _this.reels.forEach(function(reel, reelIndex) {
       resizeAndPosition();
-      reel.render();
+      
+      reel.render(game.settings.speed, game.settings.bounceDuration);
 
       for (var i = 0; i < reel.symbols.length; i++) {
         var symbol = reel.symbols[i];
@@ -52,7 +51,7 @@ Slot.ReelsController = function(game) {
       active = reel.rolling == true || !isNaN(parseInt(reel.stopping));
 
       if (active) {
-        var reelStopTime = _this.spinTime + (reelIndex * _this.spinTimeBetweenReels);
+        var reelStopTime = game.settings.spinTime + (reelIndex * game.settings.spinTimeBetweenReels);
         if (rollingTime > reelStopTime) {
           reel.stop(); // FIXME: don't call stop multiple times
         }
@@ -83,8 +82,6 @@ Slot.ReelsController.prototype.add = function(positions, symbolCount, symbolWidt
   this.engine.stage.addChild(reel.container);
   this.engine.stage.addChild(reel.mask);
   this.reels.push(reel);
-  reel.speed = this.game.settings.speed;
-  reel.bounceDuration = this.game.settings.bounceDuration;
   return reel;
 };
 
