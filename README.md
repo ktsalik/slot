@@ -1,6 +1,8 @@
 # slot
 Web Slot Machine game library based on [PixiJS](https://www.pixijs.com).
 
+## [Docs](https://ktsalik.github.io/slot/)
+
 ## Example
 Include library
 ````html
