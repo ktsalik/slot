@@ -7,6 +7,8 @@ var network = {
           [1, 2, 3, 4],
           [1, 2, 3, 4],
           [1, 2, 3, 4],
+          [1, 2, 3, 4],
+          [1, 2, 3, 4],
         ],
       });
     }, Math.random() * 500); // random response delay
@@ -32,17 +34,20 @@ var game = new Slot({
     ['symbol-9', resourcesUrl + 'symbol-9.png'],
     ['symbol-10', resourcesUrl + 'symbol-10.png'],
     ['btn-spin', resourcesUrl + 'button-spin.png'],
+    ['background', resourcesUrl + 'background.png'],
   ],
   settings: {
     speed: 0.27,
-    spinTime: 250,
-    spinTimeBetweenReels: 200,
-    reelBounceDuration: 400,
+    spinTime: 175,
+    spinTimeBetweenReels: 100,
+    reelBounceDuration: 300,
     network: true,
   },
   init: function(game) {
-    // 3x3
-    var reelsCount = 3;
+    var background = game.sprite('background');
+
+    // reels 5x3
+    var reelsCount = 5;
     var reelsPositions = 3;
     var symbolsCount = 10;
     for (var i = 0; i < reelsCount; i++) {
@@ -50,8 +55,8 @@ var game = new Slot({
       var reel = game.reels.add(reelsPositions);
 
       // position reel
-      reel.x = i * 140;
-      reel.y = 100;
+      reel.x = 381 + (i * 140) + (i * 10);
+      reel.y = 118;
 
       // initial reel values
       for (var k = 0; k < reelsPositions + 1; k++) {
@@ -74,7 +79,7 @@ var game = new Slot({
     };
 
     var btnPlay = game.sprite('btn-spin');
-    btnPlay.x = 3 * 140;
+    btnPlay.x = 381 + (4.44 * 140);
     btnPlay.y = 100 + (3 * 140);
     btnPlay.action = Slot.ACTION.PLAY;
 
