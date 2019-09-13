@@ -26,6 +26,7 @@ var Slot = function(params, gameWidth, gameHeight) {
     network: false,
   };
   this.waitForResult = false;
+  this.forceStopPending = false;
 
   this.reels.onStart(function() {
     if (this.settings.network) {
@@ -121,6 +122,9 @@ Slot.prototype.play = function() {
       this.reels.stop();
     }
   }
+  if (this.reels.rolling) {
+    this.forceStopPending = true;
+  }
 };
 /**
  * The result method is used to set a result and stop the reels.
@@ -130,6 +134,10 @@ Slot.prototype.result = function(result) {
   this.reels.reels.forEach(function(reel, reelIndex) {
     reel.stopValues = result[reelIndex];
   });
+  if (this.forceStopPending) {
+    this.reels.stop();
+    this.forceStopPending = false;
+  }
   this.waitForResult = false;
 };
 /**
