@@ -1,3 +1,14 @@
+/**
+ * Represents a Slot Machine game.
+ * @constructor
+ * @param {Object} params - The parameters required to create a game, such as resources, settings, etc.
+ * @param {number} gameWidth - The width of the game.
+ * @param {number} gameHeight - The height of the game.
+ * @example
+ * let game = new Slot({
+ *  container: '.game-container',
+ * }, 100, 100);
+ */
 var Slot = function(params, gameWidth, gameHeight) {
   this.VERSION = '0.1';
   this.engine = new Slot.Game(gameWidth, gameHeight);
@@ -84,6 +95,11 @@ var Slot = function(params, gameWidth, gameHeight) {
   }
 };
 
+/**
+ * This is the load resources method used to add resources to the game.
+ * @param {Array} config - Array with resources key and source path.
+ * @param {function} onComplete - Complete method which runs after loading is finished.
+ */
 Slot.prototype.load = function(config, onComplete) {
   config.forEach(function(resource) {
     if (resource.length) {
@@ -94,7 +110,9 @@ Slot.prototype.load = function(config, onComplete) {
   });
   PIXI.Loader.shared.load(onComplete);
 };
-
+/**
+ * The main play method used to start or stop the reels.
+ */
 Slot.prototype.play = function() {
   if (!this.waitForResult) {
     if (!this.reels.rolling) {
@@ -104,25 +122,40 @@ Slot.prototype.play = function() {
     }
   }
 };
-
+/**
+ * The result method is used to set a result and stop the reels.
+ * @param {Array} result - The array containing the result for each reel.
+ */
 Slot.prototype.result = function(result) {
   this.reels.reels.forEach(function(reel, reelIndex) {
     reel.stopValues = result[reelIndex];
   });
   this.waitForResult = false;
 };
-
+/**
+ * The method to attach event handlers on game.
+ * @param {string} eventName - The name of the event.
+ * @param {function} fn - The event callback.
+ */
 Slot.prototype.on = function(eventName, fn) {
   if (eventName in this.events) {
     this.events[eventName].push(fn);
   }
 };
-
+/**
+ * The method to add a sprite in the game.
+ * @param {string} resourceKey - The name of the resource, which must have been set on loading's configuration.
+ */
 Slot.prototype.sprite = function(resourceKey) {
   var sprite = new Slot.Sprite(resourceKey, this.engine);
   return sprite;
 };
-
+/**
+ * Describes game actions. Can be attached to sprites.
+ * @example
+ * let buttonPlay = game.sprite('btn-play');
+ * buttonPlay.action = Slot.ACTION.PLAY;
+ */
 Slot.ACTION = {
   NO_ACTION: 0,
   PLAY: 1,
