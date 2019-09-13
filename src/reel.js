@@ -1,3 +1,8 @@
+/**
+ * Represents a reel in the game.
+ * @constructor
+ * @param {number} positions - Number of reel positions.
+ */
 Slot.Reel = function(positions) {
   this.positions = positions;
   this.values = [];
@@ -62,13 +67,17 @@ Slot.Reel.prototype.render = function(speed, bounceDuration, reelIndex) {
     }
   }
 };
-
+/**
+ * Starts reel spinning.
+ */
 Slot.Reel.prototype.roll = function() {
   if (!this.rolling && this.stopping === false) {
     this.rolling = true;
   }
 };
-
+/**
+ * Stops reel from spinning.
+ */
 Slot.Reel.prototype.stop = function() {
   if (this.rolling && this.stopping === false) {
     this.stopping = 0;
